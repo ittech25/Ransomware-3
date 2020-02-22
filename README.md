@@ -1,7 +1,7 @@
 # Ransomware
 A Ransomware with a symmetric encryption algorithm (Fernet) - Made in 15 minutes.
 
-This malware will list all the files in the C: Drive, and return a list with all the files, and then I'm Encrypting the files one by one.
+This malware will list all the files in the C: Drive, and return a list with all the files, and then encrypt the files one by one.
 
 ## Requirements
 
