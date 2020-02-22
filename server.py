@@ -18,11 +18,11 @@ class Server:
         self.ip_address = self.conn.recv(1024).decode()
         if not os.path.exists(file_keys):
             with open(file_keys, 'w') as f:
-                f.write(self.key)
-                f.write(self.hostname)
+                f.write(self.key + '\n')
+                f.write(self.hostname + '\n')
                 f.write(self.ip_address)
         else:
             with open(file_keys, 'a') as f:
-                f.write(self.key)
-                f.write(self.hostname)
+                f.write(self.key + '\n')
+                f.write(self.hostname + '\n')
                 f.write(self.ip_address)
