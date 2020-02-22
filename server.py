@@ -14,9 +14,15 @@ class Server:
                 self.recv_info()
     def recv_info(self):
         self.key = self.conn.recv(1024).decode()
+        self.hostname = self.conn.recv(1024).decode()
+        self.ip_address = self.conn.recv(1024).decode()
         if not os.path.exists(file_keys):
             with open(file_keys, 'w') as f:
                 f.write(self.key)
+                f.write(self.hostname)
+                f.write(self.ip_address)
         else:
             with open(file_keys, 'a') as f:
                 f.write(self.key)
+                f.write(self.hostname)
+                f.write(self.ip_address)
